@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.opeterfreitas.ecommerce.entities.Category;
 import com.opeterfreitas.ecommerce.entities.Order;
 import com.opeterfreitas.ecommerce.entities.OrderItem;
+import com.opeterfreitas.ecommerce.entities.Payment;
 import com.opeterfreitas.ecommerce.entities.Product;
 import com.opeterfreitas.ecommerce.entities.User;
 import com.opeterfreitas.ecommerce.entities.enums.OrderStatus;
@@ -80,6 +81,11 @@ public class TestConfig implements CommandLineRunner {
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice());
 
 		orderItemRepository.saveAll(Arrays.asList(oi1, oi2, oi3, oi4));
+
+		Payment pay1 = new Payment(null, Instant.parse("2019-06-20T21:53:07Z"), o1);
+		o1.setPayment(pay1);
+		
+		orderRepository.save(o1);
 
 	}
 
